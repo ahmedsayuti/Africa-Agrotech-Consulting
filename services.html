@@ -711,6 +711,34 @@
         .section-title h2 {
           font-size: 2rem;
         }
+        .dropdown-content {
+          display: none;
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          text-align: center;
+          background-color: transparent;
+          padding-left: 20px;
+          width: 100%;
+        }
+
+        .dropdown-content.active {
+          display: block;
+        }
+
+        .dropdown-content a {
+          padding: 12px 20px;
+        }
+
+        .dropdown > a::after {
+          content: "\f078";
+          font-family: "Font Awesome 6 Free";
+          font-weight: 900;
+          margin-left: 8px;
+          font-size: 0.8rem;
+        }
       }
 
       @media (max-width: 576px) {
@@ -1286,6 +1314,39 @@
       fadeElements.forEach((element) => {
         fadeObserver.observe(element);
       });
+      // Mobile dropdown functionality
+      const dropdownLinks = document.querySelectorAll(".dropdown > a");
+
+      dropdownLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          if (window.innerWidth <= 768) {
+            // Only for mobile devices
+            e.preventDefault();
+            const dropdownContent = this.nextElementSibling;
+
+            // Close other open dropdowns
+            document.querySelectorAll(".dropdown-content").forEach((item) => {
+              if (item !== dropdownContent) {
+                item.classList.remove("active");
+              }
+            });
+
+            // Toggle current dropdown
+            dropdownContent.classList.toggle("active");
+          }
+        });
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener("click", function (e) {
+        if (window.innerWidth <= 768 && !e.target.matches(".dropdown > a")) {
+          document.querySelectorAll(".dropdown-content").forEach((item) => {
+            item.classList.remove("active");
+          });
+        }
+      });
+
+      // ... (the rest of your existing JavaScript code)
     </script>
   </body>
 </html>
