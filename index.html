@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Africa Agrotech Consulting - Transforming Agriculture Through Technology
+    </title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-blue: #0066a6;
+        --secondary-blue: #0084d6;
+        --accent-green: #5db33f;
+        --dark-green: #2c6e3c;
+        --light-bg: #f8f9fa;
+        --dark-text: #333333;
+        --light-text: #ffffff;
+        --gray-text: #6c757d;
+        --border-radius: 8px;
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--dark-text);
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--accent-green);
+        color: white;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .btn:hover {
+        background-color: var(--dark-green);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--accent-green);
+        color: var(--accent-green);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--accent-green);
+        color: white;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--primary-blue);
+        margin-bottom: 15px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .section-title p {
+        color: var(--gray-text);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--accent-green);
+        border-radius: 2px;
+      }
+
+      /* Header & Navigation */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      header.scrolled {
+        padding: 10px 0;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .logo-text span {
+        color: var(--accent-green);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links li a {
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .nav-links li a:hover {
+        color: var(--accent-green);
+      }
+
+      .nav-links li a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-green);
+        transition: var(--transition);
+      }
+
+      .nav-links li a:hover::after {
+        width: 100%;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        min-width: 200px;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: var(--transition);
+        z-index: 100;
+      }
+
+      .dropdown:hover .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-content a {
+        display: block;
+        padding: 10px 20px;
+        transition: var(--transition);
+      }
+
+      .dropdown-content a:hover {
+        background-color: var(--light-bg);
+        padding-left: 25px;
+      }
+
+      .header-cta {
+        display: flex;
+        gap: 15px;
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding-top: 150px;
+        padding-bottom: 100px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://plus.unsplash.com/premium_photo-1734554231718-84fd6044d547?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+            no-repeat center center/cover;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .typed-text {
+        color: var(--accent-green);
+        font-weight: 700;
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 60px;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--accent-green);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .stat-text {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      /* Services Section */
+      .services {
+        background-color: var(--light-bg);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: var(--box-shadow);
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-icon {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--primary-blue);
+        color: white;
+        font-size: 2.5rem;
+      }
+
+      .service-content {
+        padding: 25px;
+      }
+
+      .service-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .service-content p {
+        color: var(--gray-text);
+        margin-bottom: 20px;
+      }
+
+      /* About Section */
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .about-image {
+        position: relative;
+      }
+
+      .about-image img {
+        width: 100%;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+      }
+
+      .about-image::after {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        width: 100%;
+        height: 100%;
+        border: 3px solid var(--accent-green);
+        border-radius: var(--border-radius);
+        z-index: -1;
+      }
+
+      .about-text h2 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .about-text p {
+        margin-bottom: 15px;
+        color: var(--gray-text);
+      }
+
+      .founder-info {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: var(--light-bg);
+        border-radius: var(--border-radius);
+        position: relative;
+      }
+
+      .founder-info::before {
+        content: "\201C";
+        font-size: 5rem;
+        color: var(--accent-green);
+        position: absolute;
+        top: -20px;
+        left: 10px;
+        line-height: 1;
+        opacity: 0.3;
+      }
+
+      .founder-name {
+        font-weight: 700;
+        color: var(--primary-blue);
+        margin-top: 15px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Impact Section */
+      .impact {
+        background: linear-gradient(
+          to right,
+          var(--primary-blue),
+          var(--secondary-blue)
+        );
+        color: white;
+        text-align: center;
+      }
+
+      .impact .section-title h2 {
+        color: white;
+      }
+
+      .impact .section-title::after {
+        background: var(--accent-green);
+      }
+
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .impact-card {
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(5px);
+        transition: var(--transition);
+      }
+
+      .impact-card:hover {
+        transform: translateY(-5px);
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .impact-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--accent-green);
+      }
+
+      .impact-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        background-color: var(--light-bg);
+      }
+
+      .testimonial-slider {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .testimonial-item {
+        text-align: center;
+        padding: 40px;
+        background-color: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+      }
+
+      .testimonial-text {
+        font-size: 1.1rem;
+        font-style: italic;
+        margin-bottom: 20px;
+        color: var(--gray-text);
+      }
+
+      .testimonial-author {
+        font-weight: 700;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .testimonial-role {
+        color: var(--accent-green);
+        font-size: 0.9rem;
+      }
+
+      /* CTA Section */
+      .cta {
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+          url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")
+            no-repeat center center/cover;
+        color: white;
+        text-align: center;
+      }
+
+      .cta-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .cta p {
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 70px 0 20px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: white;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .footer-logo span {
+        color: var(--accent-green);
+      }
+
+      .footer-about p {
+        opacity: 0.8;
+        margin-bottom: 20px;
+      }
+
+      .footer-heading {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .footer-heading::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--accent-green);
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        opacity: 0.8;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+        color: var(--accent-green);
+        padding-left: 5px;
+      }
+
+      .footer-contact li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--accent-green);
+        transform: translateY(-3px);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .animate-fadeIn {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .animate-fadeIn.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .animate-pulse {
+        animation: pulse 2s infinite ease-in-out;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+
+        .about-image::after {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 15px 0;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 100%;
+          height: calc(100vh - 80px);
+          background-color: white;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 30px;
+          transition: var(--transition);
+          z-index: 999;
+        }
+
+        .nav-links.active {
+          left: 0;
+        }
+
+        .dropdown-content {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          text-align: center;
+          background-color: transparent;
+          padding-left: 20px;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .header-cta {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .stat-item {
+          width: 50%;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero {
+          padding-top: 120px;
+          padding-bottom: 60px;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .section {
+          padding: 60px 0;
+        }
+
+        .stat-number {
+          font-size: 2rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header id="header">
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo">
+            <div class="logo-text">AAC<span>.</span></div>
+          </div>
+
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="services.html"
+                >Services <i class="fas fa-chevron-down"></i
+              ></a>
+              <div class="dropdown-content">
+                <a href="#">Digital Farming Solutions</a>
+                <a href="#">Agri-Tech Training</a>
+                <a href="#">Supply Chain Modernization</a>
+                <a href="#">Sustainable Practices</a>
+              </div>
+            </li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Research</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+
+          <div class="header-cta">
+            <a href="#" class="btn btn-outline">Login</a>
+            <a href="#" class="btn">Get Started</a>
+          </div>
+
+          <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>
+            Transforming African Agriculture Through
+            <span class="typed-text">Technology</span>
+          </h1>
+          <p>
+            Africa Agrotech Consulting provides innovative solutions to enhance
+            productivity, sustainability, and profitability in the agricultural
+            sector across Africa.
+          </p>
+          <div class="hero-buttons">
+            <a href="#" class="btn">Our Services</a>
+            <a href="#" class="btn btn-outline">Contact Us</a>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number" data-count="500">0</div>
+            <div class="stat-text">Projects Completed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="24">0</div>
+            <div class="stat-text">Countries Served</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="98">0</div>
+            <div class="stat-text">Client Satisfaction</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="15">0</div>
+            <div class="stat-text">Years Experience</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section">
+      <div class="container">
+        <div class="section-title animate-fadeIn">
+          <h2>Our Services</h2>
+          <p>
+            We offer comprehensive agritech solutions tailored to the unique
+            needs of African agriculture
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <div class="service-content">
+              <h3>Digital Farming Solutions</h3>
+              <p>
+                Implement IoT sensors, drones, and farm management software to
+                optimize operations and increase yields.
+              </p>
+              <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="service-content">
+              <h3>Agri-Tech Training</h3>
+              <p>
+                Build capacity through specialized training programs on modern
+                agricultural technologies and practices.
+              </p>
+              <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <div class="service-content">
+              <h3>Supply Chain Modernization</h3>
+              <p>
+                Develop efficient supply chain solutions to reduce post-harvest
+                losses and improve market access.
+              </p>
+              <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-image animate-fadeIn">
+            <img
+              src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Mercy Maigut - Founder of AAC"
+            />
+          </div>
+
+          <div class="about-text animate-fadeIn">
+            <h2>About Africa Agrotech Consulting</h2>
+            <p>
+              Africa Agrotech Consulting (AAC) was founded with a vision to
+              transform traditional farming practices across Africa through the
+              adoption of cutting-edge technology and innovative approaches.
+            </p>
+            <p>
+              Our team of experts combines deep agricultural knowledge with
+              technical expertise to deliver solutions that address the unique
+              challenges faced by African farmers and agribusinesses.
+            </p>
+
+            <div class="founder-info">
+              <p>
+                "We believe that technology has the power to revolutionize
+                African agriculture, creating sustainable livelihoods and
+                ensuring food security for generations to come."
+              </p>
+              <div class="founder-name">Mercy Maigut, Founder & CEO</div>
+            </div>
+
+            <a href="#" class="btn">Learn More About Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Impact</h2>
+          <p>
+            Measuring success through tangible results and positive change in
+            communities
+          </p>
+        </div>
+
+        <div class="impact-grid">
+          <div class="impact-card animate-fadeIn">
+            <div class="impact-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="impact-number" data-count="25000">0</div>
+            <div class="impact-text">Farmers Empowered</div>
+          </div>
+
+          <div class="impact-card animate-fadeIn">
+            <div class="impact-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="impact-number" data-count="65">0</div>
+            <div class="impact-text">Yield Increase (%)</div>
+          </div>
+
+          <div class="impact-card animate-fadeIn">
+            <div class="impact-icon">
+              <i class="fas fa-tint"></i>
+            </div>
+            <div class="impact-number" data-count="40">0</div>
+            <div class="impact-text">Water Savings (%)</div>
+          </div>
+
+          <div class="impact-card animate-fadeIn">
+            <div class="impact-icon">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="impact-number" data-count="50">0</div>
+            <div class="impact-text">Income Increase (%)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section">
+      <div class="container">
+        <div class="section-title animate-fadeIn">
+          <h2>What Our Clients Say</h2>
+          <p>
+            Hear from farmers and organizations that have benefited from our
+            services
+          </p>
+        </div>
+
+        <div class="testimonial-slider">
+          <div class="testimonial-item animate-fadeIn">
+            <div class="testimonial-text">
+              "AAC's digital farming solutions helped us increase our yields by
+              45% while reducing water usage. Their team provided excellent
+              training and ongoing support."
+            </div>
+            <div class="testimonial-author">James Omondi</div>
+            <div class="testimonial-role">Farm Manager, Green Valley Farms</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta section">
+      <div class="container">
+        <div class="cta-content animate-fadeIn">
+          <h2>Ready to Transform Your Agricultural Operations?</h2>
+          <p>
+            Contact us today to discuss how our agritech solutions can help you
+            achieve greater productivity and sustainability.
+          </p>
+          <a href="#" class="btn">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <div class="footer-logo">AAC<span>.</span></div>
+            <p>
+              Africa Agrotech Consulting provides innovative technology
+              solutions to transform agriculture across Africa.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h3 class="footer-heading">Services</h3>
+            <ul>
+              <li><a href="#">Digital Farming</a></li>
+              <li><a href="#">Agri-Tech Training</a></li>
+              <li><a href="#">Supply Chain Solutions</a></li>
+              <li><a href="#">Sustainability Consulting</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h3 class="footer-heading">Contact Us</h3>
+            <ul>
+              <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+              <li><i class="fas fa-phone"></i> +254 700 123 456</li>
+              <li><i class="fas fa-envelope"></i> info@aacint.org</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2023 Africa Agrotech Consulting. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sticky Header
+      window.addEventListener("scroll", function () {
+        const header = document.getElementById("header");
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Mobile Menu Toggle
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+      });
+
+      // Counter Animation with Intersection Observer
+      const counterElements = document.querySelectorAll(
+        ".stat-number, .impact-number"
+      );
+
+      const options = {
+        threshold: 0.5,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const counterObserver = new IntersectionObserver(function (
+        entries,
+        observer
+      ) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      options);
+
+      counterElements.forEach((counter) => {
+        counterObserver.observe(counter);
+      });
+
+      function animateCounter(element) {
+        const target = parseInt(element.getAttribute("data-count"));
+        const duration = 2000; // 2 seconds
+        const frameDuration = 1000 / 60; // 60 frames per second
+        const totalFrames = Math.round(duration / frameDuration);
+        let frame = 0;
+
+        const counter = setInterval(() => {
+          frame++;
+          const progress = frame / totalFrames;
+          const currentCount = Math.round(target * progress);
+
+          element.textContent = currentCount;
+
+          if (frame === totalFrames) {
+            clearInterval(counter);
+          }
+        }, frameDuration);
+      }
+
+      // Fade-in Animation with Intersection Observer
+      const fadeElements = document.querySelectorAll(".animate-fadeIn");
+
+      const fadeObserver = new IntersectionObserver(
+        function (entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+        }
+      );
+
+      fadeElements.forEach((element) => {
+        fadeObserver.observe(element);
+      });
+
+      // Simple text rotation effect
+      const typedText = document.querySelector(".typed-text");
+      const texts = ["Technology", "Innovation", "Sustainability", "Expertise"];
+      let textIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+
+      function type() {
+        const currentText = texts[textIndex];
+
+        if (isDeleting) {
+          typedText.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+          typingSpeed = 50;
+        } else {
+          typedText.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+          typingSpeed = 100;
+        }
+
+        if (!isDeleting && charIndex === currentText.length) {
+          isDeleting = true;
+          typingSpeed = 1000;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          typingSpeed = 500;
+        }
+
+        setTimeout(type, typingSpeed);
+      }
+
+      // Start typing effect
+      setTimeout(type, 1000);
+    </script>
+  </body>
+</html>

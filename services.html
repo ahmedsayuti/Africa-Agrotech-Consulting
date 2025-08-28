@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services - Africa Agrotech Consulting</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-blue: #0066a6;
+        --secondary-blue: #0084d6;
+        --accent-green: #5db33f;
+        --dark-green: #2c6e3c;
+        --light-bg: #f8f9fa;
+        --dark-text: #333333;
+        --light-text: #ffffff;
+        --gray-text: #6c757d;
+        --border-radius: 8px;
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--dark-text);
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--accent-green);
+        color: white;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .btn:hover {
+        background-color: var(--dark-green);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--accent-green);
+        color: var(--accent-green);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--accent-green);
+        color: white;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--primary-blue);
+        margin-bottom: 15px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .section-title p {
+        color: var(--gray-text);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--accent-green);
+        border-radius: 2px;
+      }
+
+      /* Header & Navigation */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      header.scrolled {
+        padding: 10px 0;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .logo-text span {
+        color: var(--accent-green);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links li a {
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .nav-links li a:hover {
+        color: var(--accent-green);
+      }
+
+      .nav-links li a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-green);
+        transition: var(--transition);
+      }
+
+      .nav-links li a:hover::after {
+        width: 100%;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        min-width: 200px;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: var(--transition);
+        z-index: 100;
+      }
+
+      .dropdown:hover .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-content a {
+        display: block;
+        padding: 10px 20px;
+        transition: var(--transition);
+      }
+
+      .dropdown-content a:hover {
+        background-color: var(--light-bg);
+        padding-left: 25px;
+      }
+
+      .header-cta {
+        display: flex;
+        gap: 15px;
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Services Hero Section */
+      .services-hero {
+        padding-top: 150px;
+        padding-bottom: 100px;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1656772124124-ca4c8022744f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+            no-repeat center center/cover;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .services-hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .services-hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .services-hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      /* Services Overview */
+      .services-overview {
+        background-color: var(--light-bg);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: var(--box-shadow);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-icon {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--primary-blue);
+        color: white;
+        font-size: 2.5rem;
+      }
+
+      .service-content {
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .service-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .service-content p {
+        color: var(--gray-text);
+        margin-bottom: 20px;
+        flex-grow: 1;
+      }
+
+      /* Service Details */
+      .service-details {
+        padding: 80px 0;
+      }
+
+      .service-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .service-tab {
+        padding: 12px 25px;
+        background-color: var(--light-bg);
+        border-radius: 50px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 500;
+      }
+
+      .service-tab.active {
+        background-color: var(--primary-blue);
+        color: white;
+      }
+
+      .service-tab-content {
+        display: none;
+      }
+
+      .service-tab-content.active {
+        display: block;
+      }
+
+      .service-detail-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .service-detail-image {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+      }
+
+      .service-detail-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: var(--transition);
+      }
+
+      .service-detail-image:hover img {
+        transform: scale(1.05);
+      }
+
+      .service-detail-text h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .service-detail-text p {
+        margin-bottom: 15px;
+        color: var(--gray-text);
+      }
+
+      .service-features {
+        margin: 25px 0;
+      }
+
+      .service-feature {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .service-feature i {
+        color: var(--accent-green);
+        margin-right: 15px;
+        font-size: 1.2rem;
+      }
+
+      /* Process Section */
+      .process {
+        background-color: var(--light-bg);
+      }
+
+      .process-steps {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin-top: 50px;
+      }
+
+      .process-steps::before {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: var(--primary-blue);
+        z-index: 1;
+      }
+
+      .process-step {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        flex: 1;
+      }
+
+      .step-number {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: var(--primary-blue);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 auto 20px;
+        position: relative;
+      }
+
+      .step-content h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .step-content p {
+        color: var(--gray-text);
+      }
+
+      /* CTA Section */
+      .cta {
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+          url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")
+            no-repeat center center/cover;
+        color: white;
+        text-align: center;
+      }
+
+      .cta-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .cta p {
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 70px 0 20px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: white;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .footer-logo span {
+        color: var(--accent-green);
+      }
+
+      .footer-about p {
+        opacity: 0.8;
+        margin-bottom: 20px;
+      }
+
+      .footer-heading {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .footer-heading::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--accent-green);
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        opacity: 0.8;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+        color: var(--accent-green);
+        padding-left: 5px;
+      }
+
+      .footer-contact li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--accent-green);
+        transform: translateY(-3px);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .animate-fadeIn {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .animate-fadeIn.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .animate-pulse {
+        animation: pulse 2s infinite ease-in-out;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .services-hero h1 {
+          font-size: 2.8rem;
+        }
+
+        .service-detail-content {
+          grid-template-columns: 1fr;
+        }
+
+        .process-steps {
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .process-steps::before {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 15px 0;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 100%;
+          height: calc(100vh - 80px);
+          background-color: white;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 30px;
+          transition: var(--transition);
+          z-index: 999;
+        }
+
+        .nav-links.active {
+          left: 0;
+        }
+
+        .dropdown-content {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          text-align: center;
+          background-color: transparent;
+          padding-left: 20px;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .header-cta {
+          display: none;
+        }
+
+        .services-hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .services-hero {
+          padding-top: 120px;
+          padding-bottom: 60px;
+        }
+
+        .services-hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .section {
+          padding: 60px 0;
+        }
+
+        .service-tabs {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header id="header">
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo">
+            <div class="logo-text">AAC<span>.</span></div>
+          </div>
+
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="services.html"
+                >Services <i class="fas fa-chevron-down"></i
+              ></a>
+              <div class="dropdown-content">
+                <a href="#digital-farming">Digital Farming Solutions</a>
+                <a href="#agri-tech">Agri-Tech Training</a>
+                <a href="#supply-chain">Supply Chain Modernization</a>
+                <a href="#sustainability">Sustainable Practices</a>
+              </div>
+            </li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+
+          <div class="header-cta">
+            <a href="#" class="btn btn-outline">Login</a>
+            <a href="#" class="btn">Get Started</a>
+          </div>
+
+          <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Services Hero Section -->
+    <section class="services-hero">
+      <div class="container">
+        <div class="services-hero-content">
+          <h1>Our Innovative Agritech Services</h1>
+          <p>
+            Transforming African agriculture through cutting-edge technology
+            solutions and expertise
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Comprehensive Agritech Solutions</h2>
+          <p>
+            We offer a wide range of services designed to modernize and optimize
+            agricultural practices across Africa
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <div class="service-content">
+              <h3>Digital Farming Solutions</h3>
+              <p>
+                Implement IoT sensors, drones, and farm management software to
+                optimize operations and increase yields.
+              </p>
+              <a href="#digital-farming" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="service-content">
+              <h3>Agri-Tech Training</h3>
+              <p>
+                Build capacity through specialized training programs on modern
+                agricultural technologies and practices.
+              </p>
+              <a href="#agri-tech" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <div class="service-content">
+              <h3>Supply Chain Modernization</h3>
+              <p>
+                Develop efficient supply chain solutions to reduce post-harvest
+                losses and improve market access.
+              </p>
+              <a href="#supply-chain" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <div class="service-content">
+              <h3>Sustainable Practices</h3>
+              <p>
+                Implement eco-friendly farming techniques that increase
+                productivity while preserving resources.
+              </p>
+              <a href="#sustainability" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="service-content">
+              <h3>Data Analytics</h3>
+              <p>
+                Leverage agricultural data to gain insights, predict trends, and
+                make informed decisions.
+              </p>
+              <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+
+          <div class="service-card animate-fadeIn">
+            <div class="service-icon">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="service-content">
+              <h3>Market Access</h3>
+              <p>
+                Connect farmers with markets through digital platforms and value
+                chain development.
+              </p>
+              <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Details -->
+    <section class="service-details section" id="service-details">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Service Offerings</h2>
+          <p>Detailed overview of our comprehensive agritech solutions</p>
+        </div>
+
+        <div class="service-tabs">
+          <div class="service-tab active" data-tab="digital-farming">
+            Digital Farming
+          </div>
+          <div class="service-tab" data-tab="agri-tech">Agri-Tech Training</div>
+          <div class="service-tab" data-tab="supply-chain">Supply Chain</div>
+          <div class="service-tab" data-tab="sustainability">
+            Sustainability
+          </div>
+        </div>
+
+        <div class="service-tab-content active" id="digital-farming">
+          <div class="service-detail-content">
+            <div class="service-detail-image animate-fadeIn">
+              <img
+                src="https://plus.unsplash.com/premium_photo-1661813608341-47567ad0f1ef?q=80&w=901&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Digital Farming Solutions"
+              />
+            </div>
+            <div class="service-detail-text animate-fadeIn">
+              <h3>Digital Farming Solutions</h3>
+              <p>
+                Our digital farming solutions leverage cutting-edge technology
+                to optimize agricultural operations, increase yields, and reduce
+                resource waste. We provide end-to-end digital transformation for
+                farms of all sizes.
+              </p>
+
+              <div class="service-features">
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    >IoT sensor implementation for soil and crop
+                    monitoring</span
+                  >
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    >Drone technology for aerial imaging and precision
+                    agriculture</span
+                  >
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    >Farm management software for operational efficiency</span
+                  >
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    >Automated irrigation systems for water conservation</span
+                  >
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Data analytics for informed decision-making</span>
+                </div>
+              </div>
+
+              <a href="#" class="btn">Request a Consultation</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-tab-content" id="agri-tech">
+          <div class="service-detail-content">
+            <div class="service-detail-image animate-fadeIn">
+              <img
+                src="https://images.unsplash.com/photo-1723540561412-002d352416f0?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Agri-Tech Training"
+              />
+            </div>
+            <div class="service-detail-text animate-fadeIn">
+              <h3>Agri-Tech Training Programs</h3>
+              <p>
+                We offer comprehensive training programs designed to build
+                capacity and empower farmers with the knowledge and skills
+                needed to implement modern agricultural technologies
+                effectively.
+              </p>
+
+              <div class="service-features">
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Hands-on training with modern farming equipment</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Digital literacy programs for farmers</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Workshops on sustainable farming practices</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Certification programs in agritech applications</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Ongoing support and mentorship programs</span>
+                </div>
+              </div>
+
+              <a href="#" class="btn">Explore Training Programs</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-tab-content" id="supply-chain">
+          <div class="service-detail-content">
+            <div class="service-detail-image animate-fadeIn">
+              <img
+                src="https://images.unsplash.com/photo-1717572682950-7bf760980ce0?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Supply Chain Modernization"
+              />
+            </div>
+            <div class="service-detail-text animate-fadeIn">
+              <h3>Supply Chain Modernization</h3>
+              <p>
+                We develop and implement efficient supply chain solutions that
+                reduce post-harvest losses, improve market access, and increase
+                profitability for farmers and agribusinesses.
+              </p>
+
+              <div class="service-features">
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Cold chain infrastructure development</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Digital marketplace platforms for produce</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Logistics optimization for agricultural products</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Post-harvest management solutions</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Quality control and certification systems</span>
+                </div>
+              </div>
+
+              <a href="#" class="btn">Optimize Your Supply Chain</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-tab-content" id="sustainability">
+          <div class="service-detail-content">
+            <div class="service-detail-image animate-fadeIn">
+              <img
+                src="https://images.unsplash.com/photo-1652125635336-cdc473847bdb?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Sustainable Practices"
+              />
+            </div>
+            <div class="service-detail-text animate-fadeIn">
+              <h3>Sustainable Agricultural Practices</h3>
+              <p>
+                We help farmers implement eco-friendly techniques that increase
+                productivity while preserving natural resources for future
+                generations.
+              </p>
+
+              <div class="service-features">
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Water conservation and management systems</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Organic farming practices and certification</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Soil health management and regeneration</span>
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    >Renewable energy integration for farming operations</span
+                  >
+                </div>
+                <div class="service-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Biodiversity conservation strategies</span>
+                </div>
+              </div>
+
+              <a href="#" class="btn">Implement Sustainable Practices</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Service Process</h2>
+          <p>How we work with clients to deliver exceptional results</p>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step animate-fadeIn">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Consultation & Assessment</h4>
+              <p>
+                We begin with a thorough assessment of your current operations
+                and challenges
+              </p>
+            </div>
+          </div>
+
+          <div class="process-step animate-fadeIn">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Solution Design</h4>
+              <p>
+                Our experts design customized solutions tailored to your
+                specific needs
+              </p>
+            </div>
+          </div>
+
+          <div class="process-step animate-fadeIn">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Implementation</h4>
+              <p>
+                We implement the solutions with minimal disruption to your
+                operations
+              </p>
+            </div>
+          </div>
+
+          <div class="process-step animate-fadeIn">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Training & Support</h4>
+              <p>
+                We provide comprehensive training and ongoing support for
+                long-term success
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Transform Your Agricultural Operations?</h2>
+          <p>
+            Contact us today to discuss how our agritech solutions can help you
+            achieve greater productivity and sustainability.
+          </p>
+          <a href="#" class="btn">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <div class="footer-logo">AAC<span>.</span></div>
+            <p>
+              Africa Agrotech Consulting provides innovative technology
+              solutions to transform agriculture across Africa.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h3 class="footer-heading">Services</h3>
+            <ul>
+              <li><a href="#digital-farming">Digital Farming</a></li>
+              <li><a href="#agri-tech">Agri-Tech Training</a></li>
+              <li><a href="#supply-chain">Supply Chain Solutions</a></li>
+              <li><a href="#sustainability">Sustainability Consulting</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h3 class="footer-heading">Contact Us</h3>
+            <ul>
+              <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+              <li><i class="fas fa-phone"></i> +254 700 123 456</li>
+              <li><i class="fas fa-envelope"></i> info@aacint.org</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2023 Africa Agrotech Consulting. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sticky Header
+      window.addEventListener("scroll", function () {
+        const header = document.getElementById("header");
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Mobile Menu Toggle
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+      });
+
+      // Service Tabs
+      const serviceTabs = document.querySelectorAll(".service-tab");
+      const serviceTabContents = document.querySelectorAll(
+        ".service-tab-content"
+      );
+
+      serviceTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const tabId = tab.getAttribute("data-tab");
+
+          // Remove active class from all tabs and contents
+          serviceTabs.forEach((t) => t.classList.remove("active"));
+          serviceTabContents.forEach((c) => c.classList.remove("active"));
+
+          // Add active class to clicked tab and corresponding content
+          tab.classList.add("active");
+          document.getElementById(tabId).classList.add("active");
+        });
+      });
+
+      // Fade-in Animation with Intersection Observer
+      const fadeElements = document.querySelectorAll(".animate-fadeIn");
+
+      const fadeObserver = new IntersectionObserver(
+        function (entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+        }
+      );
+
+      fadeElements.forEach((element) => {
+        fadeObserver.observe(element);
+      });
+    </script>
+  </body>
+</html>
