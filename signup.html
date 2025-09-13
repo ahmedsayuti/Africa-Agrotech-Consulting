@@ -388,7 +388,6 @@
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 
     <script>
-      // Initialize Auth0 client
       let auth0Client;
 
       async function init() {
@@ -398,77 +397,67 @@
           cacheLocation: "localstorage",
           useRefreshTokens: true,
           authorizationParams: {
+            // MUST exactly match an Allowed Callback URL in Auth0
             redirect_uri: window.location.origin + "/signup.html",
           },
         });
 
-        // Check for authentication callback
+        // Handle Auth0 redirect callback
         const query = window.location.search;
         if (query.includes("code=") && query.includes("state=")) {
           try {
             const result = await auth0Client.handleRedirectCallback();
-            const target = result?.appState?.target || "reviews.html";
+            const target = result?.appState?.target || "/reviews.html";
+
+            // Clean up the URL
             window.history.replaceState({}, document.title, "/signup.html");
+
+            // Redirect to target page (reviews after signup)
             window.location.href = target;
+            return;
           } catch (error) {
             console.error("Error handling redirect callback:", error);
+            const alert = document.getElementById("signup-alert");
+            alert.textContent = "Error during signup. Please try again.";
+            alert.style.display = "block";
           }
         }
 
-        // Setup event listeners
-        document
-          .getElementById("auth0-signup")
-          .addEventListener("click", () => {
-            auth0Client.loginWithRedirect({
-              screen_hint: "signup",
-              appState: { target: "/reviews.html" }, // where user goes after signing up
-              authorizationParams: {
-                redirect_uri: window.location.origin + "/signup.html",
-              },
-            });
+        // Attach click handler AFTER Auth0 is ready
+        const signupBtn = document.getElementById("auth0-signup");
+        if (signupBtn) {
+          signupBtn.addEventListener("click", async () => {
+            try {
+              await auth0Client.loginWithRedirect({
+                screen_hint: "signup",
+                appState: { target: "/reviews.html" },
+                authorizationParams: {
+                  redirect_uri: window.location.origin + "/signup.html",
+                },
+              });
+            } catch (err) {
+              console.error("Auth0 signup failed:", err);
+            }
           });
+        }
 
+        // Block manual form submission
         document
           .getElementById("signup-form")
-          .addEventListener("submit", async function (e) {
+          .addEventListener("submit", (e) => {
             e.preventDefault();
             const alert = document.getElementById("signup-alert");
-
             alert.textContent =
               "Please use the 'Sign up with Auth0' button for registration";
-            alert.className = "alert alert-error";
             alert.style.display = "block";
           });
       }
 
-      // Password strength indicator
-      document
-        .getElementById("password")
-        .addEventListener("input", function () {
-          const password = this.value;
-          const strengthBar = document.getElementById("password-strength-bar");
-
-          // Reset classes
-          strengthBar.className = "password-strength-bar";
-
-          if (password.length === 0) {
-            strengthBar.style.width = "0";
-          } else if (password.length < 6) {
-            strengthBar.classList.add("password-strength-weak");
-          } else if (password.length < 10) {
-            strengthBar.classList.add("password-strength-medium");
-          } else {
-            strengthBar.classList.add("password-strength-strong");
-          }
-        });
-
-      // Initialize the application
       init().catch((error) => {
         console.error("Failed to initialize Auth0:", error);
         const alert = document.getElementById("signup-alert");
         alert.textContent =
           "Authentication service unavailable. Please try again later.";
-        alert.className = "alert alert-error";
         alert.style.display = "block";
       });
     </script>
