@@ -179,6 +179,7 @@
         color: var(--gray-text);
         max-width: 700px;
         margin: 0 auto;
+        line-height: 1.6;
       }
 
       .section-title::after {
@@ -224,6 +225,11 @@
       .logo img {
         height: 50px;
         margin-right: 10px;
+        transition: var(--transition);
+      }
+
+      .logo:hover img {
+        transform: scale(1.05);
       }
 
       .logo-text {
@@ -231,10 +237,20 @@
         font-weight: 700;
         color: var(--primary-blue);
         font-family: "Montserrat", sans-serif;
+        transition: var(--transition);
+      }
+
+      .logo:hover .logo-text {
+        color: var(--accent-green);
       }
 
       .logo-text span {
         color: var(--accent-green);
+        transition: var(--transition);
+      }
+
+      .logo:hover .logo-text span {
+        color: var(--primary-blue);
       }
 
       .nav-links {
@@ -314,6 +330,11 @@
         display: none;
         font-size: 1.5rem;
         cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .menu-toggle:hover {
+        color: var(--accent-green);
       }
 
       /* Hero Section */
@@ -347,6 +368,7 @@
         font-size: 1.2rem;
         margin-bottom: 30px;
         opacity: 0.9;
+        line-height: 1.6;
       }
 
       .hero-buttons {
@@ -356,9 +378,44 @@
         margin-top: 30px;
       }
 
+      /* Fixed container for typed text to prevent layout shift */
+      .typed-text-container {
+        display: block;
+        position: relative;
+        height: 1.2em; /* Fixed height */
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
       .typed-text {
         color: var(--accent-green);
         font-weight: 700;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      .typed-cursor {
+        position: absolute;
+        left: 77%;
+        transform: translateX(-50%);
+        animation: blink 1s infinite;
+        color: var(--accent-green);
+        margin-left: -2px; /* Adjust based on text width */
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
       }
 
       .hero-stats {
@@ -419,6 +476,12 @@
         background-color: var(--primary-blue);
         color: white;
         font-size: 2.5rem;
+        transition: var(--transition);
+      }
+
+      .service-card:hover .service-icon {
+        background-color: var(--accent-green);
+        transform: scale(1.05);
       }
 
       .service-content {
@@ -435,6 +498,7 @@
       .service-content p {
         color: var(--gray-text);
         margin-bottom: 20px;
+        line-height: 1.6;
       }
 
       /* About Section */
@@ -453,6 +517,11 @@
         width: 100%;
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
+        transition: var(--transition);
+      }
+
+      .about-image:hover img {
+        transform: scale(1.02);
       }
 
       .about-image::after {
@@ -465,6 +534,12 @@
         border: 3px solid var(--accent-green);
         border-radius: var(--border-radius);
         z-index: -1;
+        transition: var(--transition);
+      }
+
+      .about-image:hover::after {
+        top: -10px;
+        left: -10px;
       }
 
       .about-text h2 {
@@ -477,6 +552,7 @@
       .about-text p {
         margin-bottom: 15px;
         color: var(--gray-text);
+        line-height: 1.6;
       }
 
       .founder-info {
@@ -485,6 +561,12 @@
         background-color: var(--light-bg);
         border-radius: var(--border-radius);
         position: relative;
+        transition: var(--transition);
+      }
+
+      .founder-info:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--box-shadow);
       }
 
       .founder-info::before {
@@ -529,6 +611,7 @@
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 30px;
         margin-top: 50px;
+        margin-bottom: 20px;
       }
 
       .impact-card {
@@ -548,6 +631,11 @@
         font-size: 2.5rem;
         margin-bottom: 20px;
         color: var(--accent-green);
+        transition: var(--transition);
+      }
+
+      .impact-card:hover .impact-icon {
+        transform: scale(1.1);
       }
 
       .impact-number {
@@ -574,6 +662,12 @@
         background-color: white;
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
+        transition: var(--transition);
+      }
+
+      .testimonial-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
       }
 
       .testimonial-text {
@@ -581,6 +675,7 @@
         font-style: italic;
         margin-bottom: 20px;
         color: var(--gray-text);
+        line-height: 1.6;
       }
 
       .testimonial-author {
@@ -618,6 +713,7 @@
       .cta p {
         margin-bottom: 30px;
         opacity: 0.9;
+        line-height: 1.6;
       }
 
       /* Footer */
@@ -650,6 +746,7 @@
       .footer-about p {
         opacity: 0.8;
         margin-bottom: 20px;
+        line-height: 1.6;
       }
 
       .footer-heading {
@@ -736,6 +833,11 @@
         background-color: var(--accent-green);
         color: white;
         font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .mobile-account-btn:hover {
+        background-color: var(--dark-green);
       }
 
       .mobile-account-dropdown {
@@ -870,6 +972,10 @@
 
         .hero h1 {
           font-size: 2.2rem;
+        }
+
+        .typed-text-container {
+          height: 1.2em;
         }
 
         .hero-buttons {
@@ -1023,8 +1129,11 @@
       <div class="container">
         <div class="hero-content">
           <h1>
-            Transforming African Agriculture Through
-            <span class="typed-text">Technology</span>
+            Transforming African Agriculture Through<br />
+            <span class="typed-text-container">
+              <span class="typed-text">Technology</span>
+              <span class="typed-cursor">|</span>
+            </span>
           </h1>
           <p>
             Africa Agrotech Consulting provides innovative solutions to enhance
@@ -1397,8 +1506,8 @@
         fadeObserver.observe(element);
       });
 
-      // Simple text rotation effect
-      const typedText = document.querySelector(".typed-text");
+      // Text rotation effect with fixed container
+      const typedTextElement = document.querySelector(".typed-text");
       const texts = ["Technology", "Innovation", "Sustainability", "Expertise"];
       let textIndex = 0;
       let charIndex = 0;
@@ -1409,19 +1518,29 @@
         const currentText = texts[textIndex];
 
         if (isDeleting) {
-          typedText.textContent = currentText.substring(0, charIndex - 1);
+          // Remove characters
+          typedTextElement.textContent = currentText.substring(
+            0,
+            charIndex - 1
+          );
           charIndex--;
           typingSpeed = 50;
         } else {
-          typedText.textContent = currentText.substring(0, charIndex + 1);
+          // Add characters
+          typedTextElement.textContent = currentText.substring(
+            0,
+            charIndex + 1
+          );
           charIndex++;
           typingSpeed = 100;
         }
 
         if (!isDeleting && charIndex === currentText.length) {
+          // Pause at end of word
           isDeleting = true;
           typingSpeed = 1000;
         } else if (isDeleting && charIndex === 0) {
+          // Move to next word
           isDeleting = false;
           textIndex = (textIndex + 1) % texts.length;
           typingSpeed = 500;
