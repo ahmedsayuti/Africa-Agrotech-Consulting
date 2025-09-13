@@ -677,6 +677,7 @@
       .footer-links a {
         opacity: 0.8;
         transition: var(--transition);
+        display: block;
       }
 
       .footer-links a:hover {
@@ -702,6 +703,7 @@
         display: flex;
         gap: 15px;
         margin-top: 20px;
+        justify-content: center;
       }
 
       .social-icons a {
@@ -718,6 +720,42 @@
       .social-icons a:hover {
         background-color: var(--accent-green);
         transform: translateY(-3px);
+      }
+
+      /* Mobile Account Dropdown */
+      .mobile-account {
+        display: none;
+      }
+
+      .mobile-account-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 15px;
+        border-radius: 50px;
+        background-color: var(--accent-green);
+        color: white;
+        font-weight: 500;
+      }
+
+      .mobile-account-dropdown {
+        display: none;
+        padding: 15px 0;
+      }
+
+      .mobile-account-dropdown.active {
+        display: block;
+      }
+
+      .mobile-account-dropdown a {
+        display: block;
+        padding: 10px 20px;
+        transition: var(--transition);
+      }
+
+      .mobile-account-dropdown a:hover {
+        background-color: rgba(93, 179, 63, 0.1);
+        padding-left: 25px;
       }
 
       /* Animations */
@@ -759,7 +797,7 @@
         animation: pulse 2s infinite ease-in-out;
       }
 
-      /* Mobile-specific styles for Services dropdown */
+      /* Mobile-specific styles */
       @media (max-width: 768px) {
         .navbar {
           padding: 15px 0;
@@ -769,15 +807,18 @@
           position: fixed;
           top: 80px;
           left: -100%;
-          width: 60%;
+          width: 80%;
           height: calc(100vh - 80px);
           background-color: white;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 30px;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 0;
+          padding: 30px;
           transition: var(--transition);
           z-index: 999;
+          overflow-y: auto;
+          box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
         }
 
         .nav-links.active {
@@ -807,6 +848,26 @@
           display: none;
         }
 
+        /* Show mobile account dropdown */
+        .mobile-account {
+          display: block;
+          width: 100%;
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links li {
+          width: 100%;
+          margin-bottom: 15px;
+        }
+
+        .nav-links li a {
+          display: block;
+          padding: 12px 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
         .hero h1 {
           font-size: 2.2rem;
         }
@@ -824,6 +885,28 @@
           width: 50%;
         }
 
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+
+        .about-image::after {
+          display: none;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-heading::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .social-icons {
+          justify-content: center;
+        }
+
         /* Keep other dropdown functionality for desktop */
         .dropdown-content {
           display: none;
@@ -832,7 +915,7 @@
           visibility: visible;
           transform: none;
           box-shadow: none;
-          text-align: center;
+          text-align: left;
           background-color: transparent;
           padding-left: 20px;
           width: 100%;
@@ -844,6 +927,7 @@
 
         .dropdown-content a {
           padding: 12px 20px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         /* Only show dropdown indicator for non-Services items */
@@ -907,6 +991,19 @@
             <li><a href="testimonials.html">Testimonials</a></li>
             <li><a href="media.html">Media & Recognitions</a></li>
             <li><a href="contact.html">Contact</a></li>
+
+            <!-- Mobile Account Dropdown -->
+            <li class="mobile-account">
+              <a href="#" class="mobile-account-btn">
+                <i class="fas fa-user"></i>
+                Account
+                <i class="fas fa-chevron-down"></i>
+              </a>
+              <div class="mobile-account-dropdown">
+                <a href="login.html">Login</a>
+                <a href="signup.html">Get Started</a>
+              </div>
+            </li>
           </ul>
 
           <div class="header-cta">
@@ -1219,6 +1316,19 @@
         navLinks.classList.toggle("active");
       });
 
+      // Mobile Account Dropdown Toggle
+      const mobileAccountBtn = document.querySelector(".mobile-account-btn");
+      const mobileAccountDropdown = document.querySelector(
+        ".mobile-account-dropdown"
+      );
+
+      if (mobileAccountBtn) {
+        mobileAccountBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          mobileAccountDropdown.classList.toggle("active");
+        });
+      }
+
       // Counter Animation with Intersection Observer
       const counterElements = document.querySelectorAll(
         ".stat-number, .impact-number"
@@ -1351,10 +1461,22 @@
 
       // Close dropdowns when clicking outside
       document.addEventListener("click", function (e) {
-        if (window.innerWidth <= 768 && !e.target.matches(".dropdown > a")) {
-          document.querySelectorAll(".dropdown-content").forEach((item) => {
-            item.classList.remove("active");
-          });
+        if (window.innerWidth <= 768) {
+          // Close mobile account dropdown
+          if (
+            mobileAccountDropdown &&
+            !e.target.closest(".mobile-account") &&
+            mobileAccountDropdown.classList.contains("active")
+          ) {
+            mobileAccountDropdown.classList.remove("active");
+          }
+
+          // Close other dropdowns
+          if (!e.target.matches(".dropdown > a")) {
+            document.querySelectorAll(".dropdown-content").forEach((item) => {
+              item.classList.remove("active");
+            });
+          }
         }
       });
     </script>
