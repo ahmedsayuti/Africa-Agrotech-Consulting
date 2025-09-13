@@ -334,7 +334,6 @@
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 
     <script>
-      // Initialize Auth0 client
       let auth0Client;
 
       async function init() {
@@ -344,22 +343,22 @@
           cacheLocation: "localstorage",
           useRefreshTokens: true,
           authorizationParams: {
+            // ensure this exact URL is added to Allowed Callback URLs in Auth0
             redirect_uri: window.location.origin + "/login.html",
           },
         });
 
-        // Check for authentication callback
+        // handle callback if Auth0 returned code & state to this page
         const query = window.location.search;
         if (query.includes("code=") && query.includes("state=")) {
           try {
-            await auth0Client.handleRedirectCallback();
+            // handleRedirectCallback returns appState if you passed it at login
+            const result = await auth0Client.handleRedirectCallback();
+            const target = result?.appState?.target ?? "/reviews.html";
+            // clean URL (optional)
             window.history.replaceState({}, document.title, "/login.html");
-
-            // Check if authenticated and redirect to reviews
-            const isAuthenticated = await auth0Client.isAuthenticated();
-            if (isAuthenticated) {
-              window.location.href = "reviews.html";
-            }
+            window.location.href = target;
+            return;
           } catch (error) {
             console.error("Error handling redirect callback:", error);
             const alert = document.getElementById("login-alert");
@@ -367,21 +366,21 @@
               "Error during authentication. Please try again.";
             alert.className = "alert alert-error";
             alert.style.display = "block";
+            return;
           }
         }
 
-        // Check if already authenticated
+        // If already authenticated, go to reviews
         const isAuthenticated = await auth0Client.isAuthenticated();
         if (isAuthenticated) {
           window.location.href = "reviews.html";
+          return;
         }
 
-        // Setup event listeners
+        // Login button: send on a redirect back to this login page and preserve target
         document.getElementById("auth0-login").addEventListener("click", () => {
           auth0Client.loginWithRedirect({
-            authorizationParams: {
-              redirect_uri: window.location.origin + "/login.html",
-            },
+            appState: { target: "/reviews.html" }, // returns in handleRedirectCallback
           });
         });
 
@@ -391,18 +390,16 @@
             e.preventDefault();
             auth0Client.loginWithRedirect({
               screen_hint: "reset_password",
-              authorizationParams: {
-                redirect_uri: window.location.origin + "/login.html",
-              },
+              appState: { target: "/login.html" }, // after reset, we'll land on forgot page, then redirect to login
             });
           });
 
+        // Keep your manual form blocked if you prefer Auth0-only:
         document
           .getElementById("login-form")
-          .addEventListener("submit", async function (e) {
+          .addEventListener("submit", async (e) => {
             e.preventDefault();
             const alert = document.getElementById("login-alert");
-
             alert.textContent =
               "Please use the 'Log in with Auth0' button for authentication";
             alert.className = "alert alert-error";
@@ -410,7 +407,6 @@
           });
       }
 
-      // Initialize the application
       init().catch((error) => {
         console.error("Failed to initialize Auth0:", error);
         const alert = document.getElementById("login-alert");

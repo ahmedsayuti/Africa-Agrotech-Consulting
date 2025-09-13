@@ -398,7 +398,7 @@
           cacheLocation: "localstorage",
           useRefreshTokens: true,
           authorizationParams: {
-            redirect_uri: window.location.origin,
+            redirect_uri: window.location.origin + "/signup.html",
           },
         });
 
@@ -406,9 +406,10 @@
         const query = window.location.search;
         if (query.includes("code=") && query.includes("state=")) {
           try {
-            await auth0Client.handleRedirectCallback();
-            window.history.replaceState({}, document.title, "/");
-            window.location.href = "reviews.html";
+            const result = await auth0Client.handleRedirectCallback();
+            const target = result?.appState?.target || "reviews.html";
+            window.history.replaceState({}, document.title, "/signup.html");
+            window.location.href = target;
           } catch (error) {
             console.error("Error handling redirect callback:", error);
           }
@@ -420,8 +421,9 @@
           .addEventListener("click", () => {
             auth0Client.loginWithRedirect({
               screen_hint: "signup",
+              appState: { target: "/reviews.html" }, // where user goes after signing up
               authorizationParams: {
-                redirect_uri: window.location.origin,
+                redirect_uri: window.location.origin + "/signup.html",
               },
             });
           });

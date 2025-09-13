@@ -432,8 +432,10 @@
         const isAuthenticated = await auth0Client.isAuthenticated();
 
         if (!isAuthenticated) {
-          // Redirect to login if not authenticated
-          window.location.href = "login.html";
+          // Use Auth0 SDK to redirect to login and preserve target page
+          await auth0Client.loginWithRedirect({
+            appState: { target: "/reviews.html" },
+          });
           return;
         }
 
