@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up - Africa Agrotech Consulting</title>
     <style>
+      /* Your existing CSS remains the same */
       :root {
         --primary-blue: #0066a6;
         --secondary-blue: #0084d6;
@@ -105,6 +106,53 @@
       .signup-header p {
         color: var(--gray-text);
         font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .auth0-button {
+        display: block;
+        width: 100%;
+        padding: 14px 30px;
+        background-color: var(--primary-blue);
+        color: white;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .auth0-button:hover {
+        background-color: var(--secondary-blue);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 20px 0;
+        color: var(--gray-text);
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .divider::before {
+        margin-right: 0.5em;
+      }
+
+      .divider::after {
+        margin-left: 0.5em;
       }
 
       .form-group {
@@ -154,17 +202,6 @@
         background-color: var(--dark-green);
         transform: translateY(-3px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        border: 2px solid var(--accent-green);
-        color: var(--accent-green);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--accent-green);
-        color: white;
       }
 
       .signup-footer {
@@ -288,6 +325,10 @@
         <div class="signup-header">
           <h1>Create Account</h1>
           <p>Join us to access exclusive resources and submit reviews</p>
+          <button id="auth0-signup" class="auth0-button">
+            Sign up with Auth0
+          </button>
+          <div class="divider">or</div>
         </div>
 
         <div id="signup-alert" class="alert alert-error"></div>
@@ -348,85 +389,55 @@
 
     <script>
       // Initialize Auth0 client
-      const auth0Client = await createAuth0Client({
-        domain: 'dev-ucp50evj0zjm26t8.auth0.com',
-        client_id: 'NPVXyvMHb0vvqARnJoaI3Cn8yJjifvRa',
-        cacheLocation: 'localstorage',
-        useRefreshTokens: true
-      });
+      let auth0Client;
 
-      // Handle form submission
-      document
-        .getElementById("signup-form")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
-
-          const fullname = document.getElementById("fullname").value;
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-          const confirmPassword = document.getElementById("confirm-password").value;
-          const alert = document.getElementById("signup-alert");
-
-          // Simple validation
-          if (!fullname || !email || !password || !confirmPassword) {
-            alert.textContent = "Please fill in all fields";
-            alert.className = "alert alert-error";
-            alert.style.display = "block";
-            return;
-          }
-
-          // Validate email format
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            alert.textContent = "Please enter a valid email address";
-            alert.className = "alert alert-error";
-            alert.style.display = "block";
-            return;
-          }
-
-          // Validate password strength
-          if (password.length < 8) {
-            alert.textContent = "Password must be at least 8 characters long";
-            alert.className = "alert alert-error";
-            alert.style.display = "block";
-            return;
-          }
-
-          // Check if passwords match
-          if (password !== confirmPassword) {
-            alert.textContent = "Passwords do not match";
-            alert.className = "alert alert-error";
-            alert.style.display = "block";
-            return;
-          }
-
-          try {
-            // Sign up with Auth0
-            await auth0Client.signup({
-              email,
-              password,
-              connection: 'Username-Password-Authentication',
-              user_metadata: { full_name: fullname }
-            });
-
-            // Show success message
-            alert.textContent = "Account created successfully! Please check your email to verify your account.";
-            alert.className = "alert alert-success";
-            alert.style.display = "block";
-
-            // Clear form
-            document.getElementById("signup-form").reset();
-
-            // Redirect to login page after successful signup
-            setTimeout(() => {
-              window.location.href = "login.html";
-            }, 3000);
-          } catch (error) {
-            alert.textContent = error.message || "An error occurred during signup";
-            alert.className = "alert alert-error";
-            alert.style.display = "block";
-          }
+      async function init() {
+        auth0Client = await createAuth0Client({
+          domain: "dev-ucp50evj0zjm26t8.auth0.com",
+          client_id: "NPVXyvMHb0vvqARnJoaI3Cn8yJjifvRa",
+          cacheLocation: "localstorage",
+          useRefreshTokens: true,
+          authorizationParams: {
+            redirect_uri: window.location.origin,
+          },
         });
+
+        // Check for authentication callback
+        const query = window.location.search;
+        if (query.includes("code=") && query.includes("state=")) {
+          try {
+            await auth0Client.handleRedirectCallback();
+            window.history.replaceState({}, document.title, "/");
+            window.location.href = "reviews.html";
+          } catch (error) {
+            console.error("Error handling redirect callback:", error);
+          }
+        }
+
+        // Setup event listeners
+        document
+          .getElementById("auth0-signup")
+          .addEventListener("click", () => {
+            auth0Client.loginWithRedirect({
+              screen_hint: "signup",
+              authorizationParams: {
+                redirect_uri: window.location.origin,
+              },
+            });
+          });
+
+        document
+          .getElementById("signup-form")
+          .addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const alert = document.getElementById("signup-alert");
+
+            alert.textContent =
+              "Please use the 'Sign up with Auth0' button for registration";
+            alert.className = "alert alert-error";
+            alert.style.display = "block";
+          });
+      }
 
       // Password strength indicator
       document
@@ -448,6 +459,16 @@
             strengthBar.classList.add("password-strength-strong");
           }
         });
+
+      // Initialize the application
+      init().catch((error) => {
+        console.error("Failed to initialize Auth0:", error);
+        const alert = document.getElementById("signup-alert");
+        alert.textContent =
+          "Authentication service unavailable. Please try again later.";
+        alert.className = "alert alert-error";
+        alert.style.display = "block";
+      });
     </script>
   </body>
 </html>
