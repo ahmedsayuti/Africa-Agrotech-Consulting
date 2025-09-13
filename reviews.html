@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Review - Africa Agrotech Consulting</title>
+    <style>
+      :root {
+        --primary-blue: #0066a6;
+        --secondary-blue: #0084d6;
+        --accent-green: #5db33f;
+        --dark-green: #2c6e3c;
+        --light-bg: #f8f9fa;
+        --dark-text: #333333;
+        --light-text: #ffffff;
+        --gray-text: #6c757d;
+        --border-radius: 8px;
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--dark-text);
+        background-color: var(--light-bg);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .logo-text span {
+        color: var(--accent-green);
+      }
+
+      .user-menu {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .user-info {
+        font-size: 0.9rem;
+        color: var(--gray-text);
+      }
+
+      /* Reviews Section */
+      .reviews-wrapper {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+
+      .reviews-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .reviews-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .reviews-header h1 {
+        color: var(--primary-blue);
+        margin-bottom: 10px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.2rem;
+      }
+
+      .reviews-header p {
+        color: var(--gray-text);
+        font-size: 1.1rem;
+      }
+
+      /* Form Styles */
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--dark-text);
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(0, 102, 166, 0.1);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 30px;
+        background-color: var(--accent-green);
+        color: white;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .btn:hover {
+        background-color: var(--dark-green);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-logout {
+        background-color: #ff4757;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+
+      .btn-logout:hover {
+        background-color: #ff3742;
+      }
+
+      /* Reviews List */
+      .reviews-list {
+        margin-top: 50px;
+      }
+
+      .reviews-list h2 {
+        color: var(--primary-blue);
+        margin-bottom: 20px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.8rem;
+        border-bottom: 2px solid var(--accent-green);
+        padding-bottom: 10px;
+      }
+
+      .review-item {
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 25px;
+        margin-bottom: 20px;
+        transition: var(--transition);
+      }
+
+      .review-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .review-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-blue);
+        margin: 0;
+      }
+
+      .review-rating {
+        display: flex;
+        gap: 2px;
+      }
+
+      .star {
+        color: #ffd700;
+        font-size: 1.2rem;
+      }
+
+      .review-content {
+        color: var(--dark-text);
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .review-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--gray-text);
+      }
+
+      .review-author {
+        font-weight: 500;
+      }
+
+      .review-date {
+        font-style: italic;
+      }
+
+      /* Alert Styles */
+      .alert {
+        padding: 12px 15px;
+        border-radius: var(--border-radius);
+        margin-bottom: 20px;
+        display: none;
+      }
+
+      .alert-error {
+        background-color: #ffebee;
+        color: #c62828;
+        border: 1px solid #ef9a9a;
+      }
+
+      .alert-success {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        border: 1px solid #a5d6a7;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 30px 0 20px;
+        margin-top: auto;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Loading State */
+      .loading {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .review-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .review-meta {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 5px;
+        }
+
+        .user-menu {
+          flex-direction: column;
+          gap: 8px;
+          align-items: flex-end;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .reviews-container {
+          padding: 20px;
+        }
+
+        .reviews-header h1 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <a href="index.html">
+            <div class="logo">
+              <div class="logo-text">AAC<span>.</span></div>
+            </div>
+          </a>
+          <div class="user-menu">
+            <div id="user-greeting" class="user-info"></div>
+            <button id="logout-btn" class="btn btn-logout">Logout</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="reviews-wrapper">
+      <div class="reviews-container">
+        <div class="reviews-header">
+          <h1>Share Your Experience</h1>
+          <p>
+            Help us improve by sharing your feedback about Africa Agrotech
+            Consulting
+          </p>
+        </div>
+
+        <div id="review-alert" class="alert"></div>
+
+        <form id="review-form">
+          <div class="form-group">
+            <label for="review-title">Review Title</label>
+            <input
+              type="text"
+              id="review-title"
+              name="review-title"
+              required
+              placeholder="What's the main point of your review?"
+            />
+          </div>
+          <div class="form-group">
+            <label for="review-content">Your Review</label>
+            <textarea
+              id="review-content"
+              name="review-content"
+              required
+              placeholder="Share details of your experience with Africa Agrotech Consulting..."
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <select id="rating" name="rating" required>
+              <option value="">Select a rating</option>
+              <option value="5">5 Stars - Excellent</option>
+              <option value="4">4 Stars - Very Good</option>
+              <option value="3">3 Stars - Good</option>
+              <option value="2">2 Stars - Fair</option>
+              <option value="1">1 Star - Poor</option>
+            </select>
+          </div>
+          <button type="submit" class="btn" style="width: 100%">
+            Submit Review
+          </button>
+        </form>
+
+        <div class="reviews-list">
+          <h2>Recent Reviews</h2>
+          <div id="reviews-list-container">
+            <!-- Reviews will be dynamically inserted here -->
+            <div class="no-reviews">
+              <p>No reviews yet. Be the first to share your experience!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-bottom">
+          <p>&copy; 2023 Africa Agrotech Consulting. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Auth0 Client Library -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+
+    <script>
+      // Initialize Auth0 client
+      let auth0Client;
+
+      // Initialize the application
+      async function init() {
+        auth0Client = await createAuth0Client({
+          domain: "dev-ucp50evj0zjm26t8.auth0.com",
+          client_id: "NPVXyvMHb0vvqARnJoaI3Cn8yJjifvRa",
+          cacheLocation: "localstorage",
+          useRefreshTokens: true,
+        });
+
+        // Check authentication status
+        const isAuthenticated = await auth0Client.isAuthenticated();
+
+        if (!isAuthenticated) {
+          // Redirect to login if not authenticated
+          window.location.href = "login.html";
+          return;
+        }
+
+        // User is authenticated, display user info
+        await displayUserInfo();
+
+        // Load existing reviews
+        loadReviews();
+
+        // Setup event listeners
+        setupEventListeners();
+      }
+
+      // Display user information
+      async function displayUserInfo() {
+        const user = await auth0Client.getUser();
+        const userGreeting = document.getElementById("user-greeting");
+
+        if (user) {
+          userGreeting.innerHTML = `
+          Welcome, <strong>${user.name || user.email}</strong>
+        `;
+        }
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+        // Logout button
+        document.getElementById("logout-btn").addEventListener("click", logout);
+
+        // Review form submission
+        document
+          .getElementById("review-form")
+          .addEventListener("submit", submitReview);
+      }
+
+      // Logout function
+      async function logout() {
+        await auth0Client.logout({
+          returnTo: window.location.origin,
+        });
+      }
+
+      // Submit review function
+      async function submitReview(e) {
+        e.preventDefault();
+
+        const title = document.getElementById("review-title").value;
+        const content = document.getElementById("review-content").value;
+        const rating = document.getElementById("rating").value;
+        const alert = document.getElementById("review-alert");
+
+        // Simple validation
+        if (!title || !content || !rating) {
+          alert.textContent = "Please fill in all fields";
+          alert.className = "alert alert-error";
+          alert.style.display = "block";
+          return;
+        }
+
+        try {
+          // Get user information
+          const user = await auth0Client.getUser();
+
+          // Create review object
+          const review = {
+            id: Date.now().toString(),
+            title,
+            content,
+            rating: parseInt(rating),
+            author: user.name || user.email,
+            authorEmail: user.email,
+            date: new Date().toISOString(),
+          };
+
+          // Save review (in a real app, this would be an API call)
+          saveReview(review);
+
+          // Show success message
+          alert.textContent = "Review submitted successfully!";
+          alert.className = "alert alert-success";
+          alert.style.display = "block";
+
+          // Clear form
+          document.getElementById("review-form").reset();
+
+          // Reload reviews
+          loadReviews();
+        } catch (error) {
+          alert.textContent = "Error submitting review: " + error.message;
+          alert.className = "alert alert-error";
+          alert.style.display = "block";
+        }
+      }
+
+      // Save review to localStorage (simulating database storage)
+      function saveReview(review) {
+        // Get existing reviews
+        const existingReviews = JSON.parse(
+          localStorage.getItem("aac-reviews") || "[]"
+        );
+
+        // Add new review
+        existingReviews.unshift(review);
+
+        // Save back to localStorage
+        localStorage.setItem("aac-reviews", JSON.stringify(existingReviews));
+      }
+
+      // Load reviews from localStorage
+      function loadReviews() {
+        const reviewsContainer = document.getElementById(
+          "reviews-list-container"
+        );
+        const existingReviews = JSON.parse(
+          localStorage.getItem("aac-reviews") || "[]"
+        );
+
+        if (existingReviews.length === 0) {
+          reviewsContainer.innerHTML = `
+          <div class="no-reviews">
+            <p>No reviews yet. Be the first to share your experience!</p>
+          </div>
+        `;
+          return;
+        }
+
+        // Generate HTML for reviews
+        const reviewsHTML = existingReviews
+          .map(
+            (review) => `
+        <div class="review-item">
+          <div class="review-header">
+            <h3 class="review-title">${review.title}</h3>
+            <div class="review-rating">
+              ${generateStarRating(review.rating)}
+            </div>
+          </div>
+          <div class="review-content">
+            <p>${review.content}</p>
+          </div>
+          <div class="review-meta">
+            <span class="review-author">By: ${review.author}</span>
+            <span class="review-date">${formatDate(review.date)}</span>
+          </div>
+        </div>
+      `
+          )
+          .join("");
+
+        reviewsContainer.innerHTML = reviewsHTML;
+      }
+
+      // Generate star rating HTML
+      function generateStarRating(rating) {
+        let stars = "";
+        for (let i = 1; i <= 5; i++) {
+          if (i <= rating) {
+            stars += '<span class="star">★</span>';
+          } else {
+            stars += '<span class="star" style="color: #ccc">★</span>';
+          }
+        }
+        return stars;
+      }
+
+      // Format date for display
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      }
+
+      // Initialize the application when the page loads
+      window.addEventListener("DOMContentLoaded", init);
+    </script>
+  </body>
+</html>
