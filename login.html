@@ -340,11 +340,11 @@
       async function init() {
         auth0Client = await createAuth0Client({
           domain: "dev-ucp50evj0zjm26t8.auth0.com",
-          client_id: "NPVXyvMHb0vvqARnJoaI3Cn8yJjifvRa",
+          client_id: "Xi3qnpzgXDfNoYmMKftG7lgJMu4LTPZx",
           cacheLocation: "localstorage",
           useRefreshTokens: true,
           authorizationParams: {
-            redirect_uri: window.location.origin,
+            redirect_uri: window.location.origin + "/login.html",
           },
         });
 
@@ -353,8 +353,13 @@
         if (query.includes("code=") && query.includes("state=")) {
           try {
             await auth0Client.handleRedirectCallback();
-            window.history.replaceState({}, document.title, "/");
-            window.location.href = "reviews.html";
+            window.history.replaceState({}, document.title, "/login.html");
+
+            // Check if authenticated and redirect to reviews
+            const isAuthenticated = await auth0Client.isAuthenticated();
+            if (isAuthenticated) {
+              window.location.href = "reviews.html";
+            }
           } catch (error) {
             console.error("Error handling redirect callback:", error);
             const alert = document.getElementById("login-alert");
@@ -375,7 +380,7 @@
         document.getElementById("auth0-login").addEventListener("click", () => {
           auth0Client.loginWithRedirect({
             authorizationParams: {
-              redirect_uri: window.location.origin,
+              redirect_uri: window.location.origin + "/login.html",
             },
           });
         });
@@ -387,7 +392,7 @@
             auth0Client.loginWithRedirect({
               screen_hint: "reset_password",
               authorizationParams: {
-                redirect_uri: window.location.origin,
+                redirect_uri: window.location.origin + "/login.html",
               },
             });
           });
