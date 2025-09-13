@@ -285,17 +285,22 @@
       </div>
     </footer>
 
-    <!-- Netlify Identity Widget -->
-    <script
-      type="text/javascript"
-      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-    ></script>
+    <!-- Auth0 Client Library -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 
     <script>
+      // Initialize Auth0 client
+      const auth0Client = await createAuth0Client({
+        domain: 'dev-ucp50evj0zjm26t8.auth0.com',
+        client_id: 'NPVXyvMHb0vvqARnJoaI3Cn8yJjifvRa',
+        cacheLocation: 'localstorage',
+        useRefreshTokens: true
+      });
+
       // Handle form submission
       document
         .getElementById("login-form")
-        .addEventListener("submit", function (e) {
+        .addEventListener("submit", async function (e) {
           e.preventDefault();
 
           const email = document.getElementById("email").value;
@@ -310,16 +315,21 @@
             return;
           }
 
-          // For demo purposes - in a real implementation, this would be handled by Netlify Identity
-          alert.textContent =
-            "Login functionality will be enabled when deployed to Netlify";
-          alert.className = "alert alert-success";
-          alert.style.display = "block";
+          try {
+            // Login with Auth0
+            await auth0Client.loginWithCredentials({
+              email,
+              password,
+              realm: 'Username-Password-Authentication'
+            });
 
-          // In a real implementation, you would redirect after successful login
-          // setTimeout(() => {
-          //   window.location.href = "dashboard.html";
-          // }, 2000);
+            // Redirect to reviews page after successful login
+            window.location.href = "reviews.html";
+          } catch (error) {
+            alert.textContent = error.message || "Login failed. Please check your credentials.";
+            alert.className = "alert alert-error";
+            alert.style.display = "block";
+          }
         });
     </script>
   </body>
