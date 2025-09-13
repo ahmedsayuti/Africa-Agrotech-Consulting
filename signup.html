@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up - Africa Agrotech Consulting</title>
     <style>
-      /* Your CSS styles remain unchanged */
+      /* Your existing CSS remains the same */
       :root {
         --primary-blue: #0066a6;
         --secondary-blue: #0084d6;
@@ -20,6 +20,12 @@
         --transition: all 0.3s ease;
       }
 
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
         font-family: "Poppins", sans-serif;
         line-height: 1.6;
@@ -30,6 +36,11 @@
         min-height: 100vh;
       }
 
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
       .container {
         width: 100%;
         max-width: 1200px;
@@ -37,6 +48,7 @@
         padding: 0 20px;
       }
 
+      /* Header Styles */
       header {
         background-color: rgba(255, 255, 255, 0.95);
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -60,6 +72,7 @@
         color: var(--accent-green);
       }
 
+      /* Centered Signup Section */
       .signup-wrapper {
         display: flex;
         flex: 1;
@@ -197,6 +210,21 @@
         color: var(--gray-text);
       }
 
+      .signup-footer p {
+        margin-bottom: 10px;
+      }
+
+      .signup-footer a {
+        color: var(--primary-blue);
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .signup-footer a:hover {
+        color: var(--accent-green);
+        text-decoration: underline;
+      }
+
       .alert {
         padding: 12px 15px;
         border-radius: var(--border-radius);
@@ -216,6 +244,42 @@
         border: 1px solid #a5d6a7;
       }
 
+      .password-strength {
+        margin-top: 8px;
+        height: 5px;
+        background-color: #eee;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .password-strength-bar {
+        height: 100%;
+        width: 0;
+        transition: width 0.3s ease;
+      }
+
+      .password-strength-weak {
+        background-color: #ff4757;
+        width: 33%;
+      }
+
+      .password-strength-medium {
+        background-color: #ffa502;
+        width: 66%;
+      }
+
+      .password-strength-strong {
+        background-color: #2ed573;
+        width: 100%;
+      }
+
+      .password-requirements {
+        margin-top: 8px;
+        font-size: 0.8rem;
+        color: var(--gray-text);
+      }
+
+      /* Footer Styles */
       footer {
         background-color: #1a1a1a;
         color: white;
@@ -227,6 +291,17 @@
         text-align: center;
         padding-top: 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 576px) {
+        .signup-container {
+          padding: 30px 25px;
+        }
+
+        .signup-header h1 {
+          font-size: 1.7rem;
+        }
       }
     </style>
   </head>
@@ -244,7 +319,7 @@
       </div>
     </header>
 
-    <!-- Signup Section -->
+    <!-- Centered Signup Section -->
     <div class="signup-wrapper">
       <div class="signup-container">
         <div class="signup-header">
@@ -270,6 +345,16 @@
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required />
+            <div class="password-strength">
+              <div
+                id="password-strength-bar"
+                class="password-strength-bar"
+              ></div>
+            </div>
+            <div class="password-requirements">
+              Must be at least 8 characters with uppercase, lowercase, and
+              numbers
+            </div>
           </div>
           <div class="form-group">
             <label for="confirm-password">Confirm Password</label>
@@ -301,33 +386,33 @@
 
     <!-- Auth0 Client Library -->
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-    <script>
-      console.log("Signup page script loaded");
 
+    <script>
       let auth0Client;
 
       async function init() {
-        console.log("Initializing Auth0...");
         auth0Client = await createAuth0Client({
-          domain: "dev-ucp50evj0zjm26t8.auth0.com",
+          domain: "https://dev-ucp50evj0zjm26t8.auth0.com",
           client_id: "Xi3qnpzgXDfNoYmMKftG7lgJMu4LTPZx",
           cacheLocation: "localstorage",
           useRefreshTokens: true,
           authorizationParams: {
+            // MUST exactly match an Allowed Callback URL in Auth0
             redirect_uri: window.location.origin + "/signup.html",
           },
         });
 
-        console.log("Auth0 initialized");
-
-        // Handle callback
+        // Handle Auth0 redirect callback
         const query = window.location.search;
         if (query.includes("code=") && query.includes("state=")) {
           try {
             const result = await auth0Client.handleRedirectCallback();
             const target = result?.appState?.target || "/reviews.html";
 
+            // Clean up the URL
             window.history.replaceState({}, document.title, "/signup.html");
+
+            // Redirect to target page (reviews after signup)
             window.location.href = target;
             return;
           } catch (error) {
@@ -338,12 +423,10 @@
           }
         }
 
-        // Attach event listener
+        // Attach click handler AFTER Auth0 is ready
         const signupBtn = document.getElementById("auth0-signup");
         if (signupBtn) {
-          console.log("Found signup button, attaching event");
           signupBtn.addEventListener("click", async () => {
-            console.log("Signup button clicked!");
             try {
               await auth0Client.loginWithRedirect({
                 screen_hint: "signup",
@@ -356,11 +439,9 @@
               console.error("Auth0 signup failed:", err);
             }
           });
-        } else {
-          console.error("Signup button NOT found in DOM");
         }
 
-        // Block manual form
+        // Block manual form submission
         document
           .getElementById("signup-form")
           .addEventListener("submit", (e) => {
@@ -372,7 +453,13 @@
           });
       }
 
-      document.addEventListener("DOMContentLoaded", init);
+      init().catch((error) => {
+        console.error("Failed to initialize Auth0:", error);
+        const alert = document.getElementById("signup-alert");
+        alert.textContent =
+          "Authentication service unavailable. Please try again later.";
+        alert.style.display = "block";
+      });
     </script>
   </body>
 </html>
